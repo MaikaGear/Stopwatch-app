@@ -7,6 +7,7 @@ const stopBtn = document.querySelector('.stop-btn')
 const lapBtn = document.querySelector('.lap-btn')
 const clearBtn = document.querySelector('.clear-btn')
 const resetBtn = document.querySelector('.reset-timer-btn')
+let newChild = document.querySelector('.new-para')
 let parentEl = document.querySelector('.lappedContainer')
 let id;
 
@@ -18,42 +19,17 @@ minutes.innerHTML = '0' + timeInMinutes
 seconds.innerHTML = '0' + timeInSeconds
 milliseconds.innerHTML = '0' + timeInMili
 
-function timer(){
-    milliseconds.innerHTML = timeInMili ++
-    if (timeInMili === 99){
-        timeInMili = 00
-        timeInSeconds ++
-    }
-    if(timeInSeconds < 10){
-        seconds.innerHTML = '0' + timeInSeconds
-    }
-    if(timeInSeconds >= 10){
-        seconds.innerHTML = timeInSeconds
-    }
-    if(timeInMili < 10){
-        milliseconds.innerHTML = '0' + timeInMili
-    }
-    if(timeInMili >= 10){
-        milliseconds.innerHTML = timeInMili
-    }
-    if(timeInMinutes < 10){
-        minutes.innerHTML = '0' + timeInMinutes
-    }
-    if(timeInMinutes >= 10){
-        minutes.innerHTML = timeInMinutes
-    }
-    if(timeInSeconds === 60){
-        timeInSeconds = 00
-        timeInMinutes ++
-    }
-}
-
 startBtn.addEventListener('click', start)
 
-function start(){
-    clearInterval(id);
-    id = setInterval(timer, 10);
-    resetBtn.removeAttribute('disabled');
+function activateButton(button){
+    if(button.hasAttribute('disabled')){
+        button.removeAttribute('disabled')
+    }
+}
+function deactivateButton(button){
+    if(!button.hasAttribute('disabled')){
+        button.setAttribute('disabled', 'true');
+    }
 }
 
 resetBtn.addEventListener('click', function(){
@@ -65,14 +41,61 @@ resetBtn.addEventListener('click', function(){
     seconds.innerHTML = timeInSeconds;
     milliseconds.innerHTML = timeInMili;
     lapBtn.setAttribute('disabled', 'true');
-    //create a function that clears lapped times so its easier to call
+    clearLaps();
+    startBtn.removeAttribute('disabled');
+    stopBtn.setAttribute('disabled', 'true');
 })
 
-stopBtn.addEventListener('click', stop)
 
-function stop(){
-    clearInterval(id)
+function start(){
+    clearInterval(id);
+    id = setInterval(timer, 10);
+    /* resetBtn.removeAttribute('disabled');
+    stopBtn.removeAttribute('disabled'); */
+    deactivateButton(resetBtn);
+    activateButton(stopBtn);
+    activateButton(resetBtn);
+    activateButton(lapBtn)
 }
+function timer(){
+    milliseconds.innerHTML = timeInMili ++
+    if (timeInMili === 99){
+        timeInMili = 00
+        timeInSeconds ++
+    }
+    if(timeInSeconds < 10 && typeof timeInSeconds !== 'string'){
+        seconds.innerHTML = '0' + timeInSeconds
+    }
+    if(timeInSeconds >= 10){
+        seconds.innerHTML = timeInSeconds
+    }
+    if(timeInMili < 10 && typeof timeInMili !== 'string'){
+        milliseconds.innerHTML = '0' + timeInMili
+    }
+    if(timeInMili >= 10){
+        milliseconds.innerHTML = timeInMili
+    }
+    if(timeInMinutes < 10 && typeof timeInMinutes !== 'string'){
+        minutes.innerHTML = '0' + timeInMinutes
+    }
+    if(timeInMinutes >= 10){
+        minutes.innerHTML = timeInMinutes
+    }
+    if(timeInSeconds === 60){
+        timeInSeconds = 00
+        timeInMinutes ++
+    }
+    activateButton(lapBtn);
+    deactivateButton(startBtn);
+}
+
+stopBtn.addEventListener('click', function(){
+    clearInterval(id)
+    activateButton(startBtn);
+    deactivateButton(stopBtn);
+}
+)
+
 
 function check(val){
     if(val < 9){
@@ -85,11 +108,17 @@ function check(val){
 lapBtn.addEventListener('click', function(){
     let newPara = document.createElement('p');
     newPara.innerHTML = `${check(timeInMinutes)}:${check(timeInSeconds)}:${check(timeInMili)}`;
+    newPara.classList.add('new-para');
     parentEl.appendChild(newPara);
-    clearBtn.removeAttribute('disabled');
+    activateButton(clearBtn);
     clearBtn.addEventListener('click', function(){
         newPara.remove()
     })
 })
 
+function clearLaps(){
+    while(parentEl.firstChild){
+        parentEl.replaceChildren();
+    }
+}
 

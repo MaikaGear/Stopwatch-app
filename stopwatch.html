@@ -9,15 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <p class="child-of-container">
             <span class="minutes"></span>:<span class="seconds"></span>:<span class="milli-seconds"></span>
             <button class="start-btn">Start</button>
-            <button class="stop-btn">Stop</button>
-            <button class="lap-btn">Lap</button>
+            <button class="stop-btn" disabled>Stop</button>
+            <button class="lap-btn" disabled>Lap</button>
             <button class="reset-timer-btn" disabled>Reset timer</button>
-            <div class="lappedContainer"></div>
-            <button class="clear-btn" disabled>Clear laps</button>
-        </p>
+            <div class="lappedContainer">
+                <button class="clear-btn" disabled>Clear laps</button>
+            </div>
     </div>
     <script src="./stopwatch.js"></script>
 </body>
