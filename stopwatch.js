@@ -10,10 +10,15 @@ const resetBtn = document.querySelector('.reset-timer-btn')
 let newChild = document.querySelector('.new-para')
 let parentEl = document.querySelector('.lappedContainer')
 let id;
+let id2;
 
+let countStart = 3;
 let timeInMinutes = 00;
 let timeInSeconds = 00;
 let timeInMili = 00;
+
+
+
 
 minutes.innerHTML = '0' + timeInMinutes
 seconds.innerHTML = '0' + timeInSeconds
@@ -55,7 +60,8 @@ function start(){
     deactivateButton(resetBtn);
     activateButton(stopBtn);
     activateButton(resetBtn);
-    activateButton(lapBtn)
+    activateButton(lapBtn);
+    lapCount = 0;
 }
 function timer(){
     milliseconds.innerHTML = timeInMili ++
@@ -98,13 +104,14 @@ stopBtn.addEventListener('click', function(){
 
 
 function check(val){
-    if(val < 9){
+    if(val <= 9){
         return "0" + val;
     } else {
         return val;
     }
 }
 
+let lapCount = 0;
 lapBtn.addEventListener('click', function(){
     let newPara = document.createElement('p');
     newPara.innerHTML = `${check(timeInMinutes)}:${check(timeInSeconds)}:${check(timeInMili)}`;
@@ -115,11 +122,26 @@ lapBtn.addEventListener('click', function(){
         newPara.remove();
         deactivateButton(clearBtn);
     })
+    lapCount ++;
+    if(lapCount === 10){
+        clearLaps();
+    }    
 })
+
+
 
 function clearLaps(){
     while(parentEl.firstChild){
         parentEl.replaceChildren();
     }
+    lapCount = 0;
 }
+
+function clrCnt(){
+    clearCountdown.innerHTML = countStart --;
+    if(countStart === 0){
+        clearCountdown.innerHTML = '';
+    }
+}
+
 
