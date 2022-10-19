@@ -123,7 +123,7 @@ lapBtn.addEventListener('click', function(){
         deactivateButton(clearBtn);
     })
     lapCount ++;
-    if(lapCount === 10){
+    if(lapCount === 11){
         clearLaps();
     }    
 })
