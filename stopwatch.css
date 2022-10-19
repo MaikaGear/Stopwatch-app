@@ -1,5 +1,4 @@
 *{
-    font-family: 'Questrial', sans-serif;
     color: white;
     background-color: black;
 }
@@ -11,6 +10,8 @@
     align-items: center;
     font-size: 130px;
     margin-bottom: 30px;
+    font-family: 'Manrope', sans-serif;
+    color: rgba(124, 48, 48, 0.692);
 }
 
 .container-2{
@@ -28,11 +29,21 @@
     padding-top: 10px;
     text-align: center;
     align-content: flex-start;
+    border-top: solid 0.3px rgba(255, 255, 255, 0.068);
 }
 
 .clear-btn{
     display: block;
     margin: auto;
+}
+
+.rules{
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Questrial', sans-serif;
 }
 
 button{
@@ -42,9 +53,24 @@ button{
     width: 150px;
     height: 45px;
     border-radius: 35px;
-    border: solid white 3px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.326);
+    transition: background-color 0.15s;
+    font-family: 'Abel', sans-serif;
+    font-size: 18px;
 }
 
+p{
+    font-family: 'Abel', sans-serif;
+}
+
+button:hover{
+    background-color: rgba(220, 220, 220, 0.386);
+}
+
+button:active{
+    background-color: rgba(152, 150, 150, 0.297);
+}
 
 @media (max-width: 29.99em){
     .container-1{

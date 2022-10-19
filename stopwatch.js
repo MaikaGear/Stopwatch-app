@@ -50,13 +50,9 @@ resetBtn.addEventListener('click', function(){
     startBtn.removeAttribute('disabled');
     stopBtn.setAttribute('disabled', 'true');
 })
-
-
 function start(){
     clearInterval(id);
     id = setInterval(timer, 10);
-    /* resetBtn.removeAttribute('disabled');
-    stopBtn.removeAttribute('disabled'); */
     deactivateButton(resetBtn);
     activateButton(stopBtn);
     activateButton(resetBtn);
@@ -94,15 +90,11 @@ function timer(){
     activateButton(lapBtn);
     deactivateButton(startBtn);
 }
-
 stopBtn.addEventListener('click', function(){
     clearInterval(id)
     activateButton(startBtn);
     deactivateButton(stopBtn);
-}
-)
-
-
+})
 function check(val){
     if(val <= 9){
         return "0" + val;
@@ -110,7 +102,6 @@ function check(val){
         return val;
     }
 }
-
 let lapCount = 0;
 lapBtn.addEventListener('click', function(){
     let newPara = document.createElement('p');
@@ -118,25 +109,22 @@ lapBtn.addEventListener('click', function(){
     newPara.classList.add('new-para');
     parentEl.appendChild(newPara);
     activateButton(clearBtn);
+    newPara.style.color = 'rgba(124, 48, 48, 0.692)';
     clearBtn.addEventListener('click', function(){
         newPara.remove();
         deactivateButton(clearBtn);
     })
     lapCount ++;
-    if(lapCount === 11){
+    if(lapCount === 19){
         clearLaps();
     }    
 })
-
-
-
 function clearLaps(){
     while(parentEl.firstChild){
         parentEl.replaceChildren();
     }
     lapCount = 0;
 }
-
 function clrCnt(){
     clearCountdown.innerHTML = countStart --;
     if(countStart === 0){
