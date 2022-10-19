@@ -112,7 +112,8 @@ lapBtn.addEventListener('click', function(){
     parentEl.appendChild(newPara);
     activateButton(clearBtn);
     clearBtn.addEventListener('click', function(){
-        newPara.remove()
+        newPara.remove();
+        deactivateButton(clearBtn);
     })
 })
 

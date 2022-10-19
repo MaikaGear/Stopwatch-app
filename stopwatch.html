@@ -5,19 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stopwatch.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="full-container">
+        <div class="container-1">
             <span class="minutes"></span>:<span class="seconds"></span>:<span class="milli-seconds"></span>
-            <button class="start-btn">Start</button>
-            <button class="stop-btn" disabled>Stop</button>
-            <button class="lap-btn" disabled>Lap</button>
-            <button class="reset-timer-btn" disabled>Reset timer</button>
+        </div>
+        <div class="container-2">
+                <button class="start-btn">Start</button>
+                <button class="stop-btn" disabled>Stop</button>
+                <button class="lap-btn" disabled>Lap</button>
+                <button class="reset-timer-btn" disabled>Reset timer</button>
+        </div>
+        <button class="clear-btn" disabled>Clear laps</button>
+        <div class="container-3">
             <div class="lappedContainer">
-                <button class="clear-btn" disabled>Clear laps</button>
+
             </div>
+        </div>
     </div>
+
     <script src="./stopwatch.js"></script>
 </body>
 </html>
