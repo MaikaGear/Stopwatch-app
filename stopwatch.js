@@ -34,12 +34,12 @@ function deactivateButton(button){
 
 resetBtn.addEventListener('click', function(){
     clearInterval(id);
-    timeInMinutes = '00';
-    timeInSeconds = '00';
-    timeInMili = '00';
-    minutes.innerHTML = timeInMinutes;
-    seconds.innerHTML = timeInSeconds;
-    milliseconds.innerHTML = timeInMili;
+    timeInMinutes = 0;
+    timeInSeconds = 0;
+    timeInMili = 0;
+    minutes.innerHTML = timeInMinutes + '0';
+    seconds.innerHTML = timeInSeconds + '0';
+    milliseconds.innerHTML = timeInMili + '0';
     lapBtn.setAttribute('disabled', 'true');
     clearLaps();
     startBtn.removeAttribute('disabled');
